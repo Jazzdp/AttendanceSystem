@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Table initialization
   const table = document.querySelector('.table-wrapper table');
-  if (!table) return;
-
-  // Find header rows (first two tr elements)
-  const allRows = Array.from(table.querySelectorAll('tr'));
+  if (table) {
+    // Find header rows (first two tr elements)
+    const allRows = Array.from(table.querySelectorAll('tr'));
   if (allRows.length < 3) return; // need at least 2 header rows + 1 data row
 
   const headerCount = 2;
@@ -81,7 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (row) updateRow(row);
     }
   });
-  document.addEventListener('DOMContentLoaded', () => {
+  }
+
+  // Form handling
     const form = document.getElementById('studentForm');
     const studentId = document.getElementById('studentId');
     const lastName = document.getElementById('lastName');
@@ -94,99 +96,74 @@ document.addEventListener('DOMContentLoaded', () => {
     const firstNameError = document.getElementById('firstNameError');
     const emailError = document.getElementById('emailError');
 
-    // Validation functions
-    function validateStudentId() {
-        const value = studentId.value.trim();
-        if (value === '') {
-            studentIdError.textContent = 'Student ID cannot be empty.';
-            studentId.classList.add('invalid');
-            return false;
-        }
-        if (!/^\d+$/.test(value)) {
-            studentIdError.textContent = 'Student ID must contain only numbers.';
-            studentId.classList.add('invalid');
-            return false;
-        }
-        studentIdError.textContent = '';
-        studentId.classList.remove('invalid');
-        return true;
-    }
+    
+ 
+    // === Handle Form Submission ===
+    document.getElementById("studentForm").addEventListener("submit", function(event) {
+      event.preventDefault();
 
-    function validateLastName() {
-        const value = lastName.value.trim();
-        if (value === '') {
-            lastNameError.textContent = 'Last Name cannot be empty.';
-            lastName.classList.add('invalid');
-            return false;
-        }
-        if (!/^[a-zA-Z\s]+$/.test(value)) {
-            lastNameError.textContent = 'Last Name must contain only letters.';
-            lastName.classList.add('invalid');
-            return false;
-        }
-        lastNameError.textContent = '';
-        lastName.classList.remove('invalid');
-        return true;
-    }
+      const id = document.getElementById("studentId").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const firstName = document.getElementById("firstName").value.trim();
+      const email = document.getElementById("email").value.trim();
 
-    function validateFirstName() {
-        const value = firstName.value.trim();
-        if (value === '') {
-            firstNameError.textContent = 'First Name cannot be empty.';
-            firstName.classList.add('invalid');
-            return false;
-        }
-        if (!/^[a-zA-Z\s]+$/.test(value)) {
-            firstNameError.textContent = 'First Name must contain only letters.';
-            firstName.classList.add('invalid');
-            return false;
-        }
-        firstNameError.textContent = '';
-        firstName.classList.remove('invalid');
-        return true;
-    }
+      const idError = document.getElementById("idError");
+      const lastError = document.getElementById("lastError");
+      const firstError = document.getElementById("firstError");
+      const emailError = document.getElementById("emailError");
 
-    function validateEmail() {
-        const value = email.value.trim();
-        if (value === '') {
-            emailError.textContent = 'Email cannot be empty.';
-            email.classList.add('invalid');
-            return false;
-        }
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) {
-            emailError.textContent = 'Email must be in valid format (e.g., name@example.com).';
-            email.classList.add('invalid');
-            return false;
-        }
-        emailError.textContent = '';
-        email.classList.remove('invalid');
-        return true;
-    }
-     studentId.addEventListener('blur', validateStudentId);
-    lastName.addEventListener('blur', validateLastName);
-    firstName.addEventListener('blur', validateFirstName);
-    email.addEventListener('blur', validateEmail);
+      idError.textContent = "";
+      lastError.textContent = "";
+      firstError.textContent = "";
+      emailError.textContent = "";
 
-    // Form submission
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+      let valid = true;
+      const idPattern = /^[0-9]+$/;
+      const namePattern = /^[A-Za-zÀ-ÿ\s'-]+$/;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        // Validate all fields
-        const isStudentIdValid = validateStudentId();
-        const isLastNameValid = validateLastName();
-        const isFirstNameValid = validateFirstName();
-        const isEmailValid = validateEmail();
+      if (id === "" || !idPattern.test(id)) {
+        idError.textContent = "Student ID must contain only numbers.";
+        valid = false;
+      }
+      if (lastName === "" || !namePattern.test(lastName)) {
+        lastError.textContent = "Last name must contain only letters.";
+        valid = false;
+      }
+      if (firstName === "" || !namePattern.test(firstName)) {
+        firstError.textContent = "First name must contain only letters.";
+        valid = false;
+      }
+      if (email === "" || !emailPattern.test(email)) {
+        emailError.textContent = "Please enter a valid email address.";
+        valid = false;
+      }
 
-        // Check if all validations passed
-        if (isStudentIdValid && isLastNameValid && isFirstNameValid && isEmailValid) {
-            alert('Form submitted successfully!');
-            // Here you would normally submit the form data
-            // form.submit(); // Uncomment to actually submit
-            form.reset(); // Reset form after successful validation
-        } else {
-            alert('Please fix the errors before submitting.');
-        }
+      if (!valid) return;
+
+      // === Create a new row in the attendance table ===
+      const tableBody = document.querySelector("#attendanceTable tbody");
+      const newRow = document.createElement("tr");
+
+      // Create cells
+      newRow.innerHTML = `
+        <td class="LastName">${lastName}</td>
+        <td class=FirstName>${firstName}</td>
+        ${Array(6).fill('<td><input type="checkbox" class="attendance"></td>').join('')}
+        ${Array(6).fill('<td><input type="checkbox" class="participation"></td>').join('')}
+        <td class="absCount"></td>
+        <td class="parCount"></td>
+        <td class="message-col"></td>
+      `;
+
+      // Add to table
+      tableBody.appendChild(newRow);
+
+      // Attach checkbox listeners for new row
+      newRow.querySelectorAll("input[type='checkbox']").forEach(cb => {
+        cb.addEventListener("change", updateRow);
+      alert(`Student "${firstName} ${lastName}" added successfully!`);
+      this.reset();
     });
 });
 });

@@ -222,19 +222,19 @@
         <section id="attendance">
             <h2>Student Attendance List</h2>
             <div class="table-wrapper">
-                <table>
+                <table class="attendanceTable tbody">
                     
                         <tr>
-                            <th rowspan="2">Last Name</th>
-                            <th rowspan="2">First Name</th>
-                            <th colspan="2">S1</th>
-                            <th colspan="2">S2</th> 
-                            <th colspan="2">S3</th>
-                            <th colspan="2" >S4</th>
-                            <th colspan="2">S5</th>
-                            <th colspan="2">S6</th>
-                            <th rowspan="2">Absences</th>
-                            <th rowspan="2">Participation</th>
+                            <th class="LastName" rowspan="2">Last Name</th>
+                            <th  class= "FirstName" rowspan="2">First Name</th>
+                            <th  class="S" colspan="2">S1</th>
+                            <th class="S" colspan="2">S2</th> 
+                            <th  class="S" colspan="2">S3</th>
+                            <th  class="S" colspan="2" >S4</th>
+                            <th class="S" colspan="2">S5</th>
+                            <th class="S" colspan="2">S6</th>
+                            <th class="absCount" rowspan="2">Absences</th>
+                            <th class="parCount" rowspan="2">Participation</th>
                             <th colspan="2" rowspan="2">Message</th>
                         </tr>
                         <tr>
@@ -318,21 +318,21 @@
         <!-- exo2 -->
        <section id="add-student">
     <h2>Add New Student</h2>
-    <form action="#" method="POST" id="studentForm">
+    <form  method="POST" id="studentForm">
         <div class="form-group">
             <label for="studentId">Student ID:</label>
             <input type="text" id="studentId" name="studentId" required>
-            <span class="error-message" id="studentIdError"></span>
+            <span class="error-message" id="idError"></span>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name:</label>
             <input type="text" id="lastName" name="lastName" required>
-            <span class="error-message" id="lastNameError"></span>
+            <span class="error-message" id="lastError"></span>
         </div>
         <div class="form-group">
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" name="firstName" required>
-            <span class="error-message" id="firstNameError"></span>
+            <span class="error-message" id="firstError"></span>
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
