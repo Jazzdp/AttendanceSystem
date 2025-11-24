@@ -146,7 +146,6 @@
         $(document).ready(function() {
             // Exercise 4: Show Report
             $('#showReport').on('click', function() {
-
                    if ($('#reportSection').is(':visible')) {
                    $('#reportSection').slideUp();
                     return;
@@ -170,11 +169,60 @@
                     <div class="report-item"><strong>Total Students:</strong> ${totalStudents}</div>
                     <div class="report-item"><strong>Students with Good Attendance:</strong> ${presentCount}</div>
                     <div class="report-item"><strong>Students with Participation:</strong> ${participatedCount}</div>
+                    <canvas> id="myChart" style="width:100%;max-width:700px" </canvas>
                 `;
-
-                $('#reportSection').html(reportHTML).slideDown();
+ 
+                $('#reportSection').html(reportHTML).slideDown( );
+               
             });
+           //chart 
+         function displayAbsencesChart() {
+    const sessions = 6;
+    const firstSessionIndex = 2;
+    const absencesPerSession = Array(sessions).fill(0);
 
+    // Count absences for each session
+    $('#attendanceTable tbody tr').each(function() {
+        for (let s = 0; s < sessions; s++) {
+            const pCell = $(this).find('td').eq(firstSessionIndex + s * 2);
+            const checkbox = pCell.find('input[type="checkbox"]');
+            if (checkbox && !checkbox.is(':checked')) {
+                absencesPerSession[s]++;
+            }
+        }
+    });
+
+    // Destroy existing chart if it exists
+    if (window.absencesChart) {
+        window.absencesChart.destroy();
+    }
+
+    // Create bar chart
+    const ctx = document.getElementById('myChart').getContext('2d');
+    window.absencesChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Array.from({ length: sessions }, (_, i) => `Session ${i + 1}`),
+            datasets: [{
+                label: 'Absences per Session',
+                data: absencesPerSession,
+                backgroundColor: '#ff6b6b',
+                borderColor: '#c92a2a',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: Math.max(...absencesPerSession) + 2
+                }
+            }
+        }
+    });
+}
             // Exercise 5: Hover highlight
             $('#attendanceTable tbody').on('mouseenter', 'tr', function() {
                 $(this).addClass('row-highlight');
@@ -199,7 +247,7 @@
                     if (absences < 3) {
                          $(this).fadeOut(1000).fadeIn(1000).fadeOut(1000).fadeIn(1000);
                         this.origColor=this.style.backgroundColor;
-    this.style.backgroundColor='#513dbdff';
+                         this.style.backgroundColor='#513dbdff';
                        
                     }
                 });
