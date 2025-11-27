@@ -1,0 +1,18 @@
+[
+    {
+        "session_id": "10",
+        "student_id": "3927424",
+        "name": "Douaa Zeghmar",
+        "status": "absent",
+        "participation": "no",
+        "group": 5
+    },
+    {
+        "session_id": "10",
+        "student_id": "232331344619",
+        "name": "Hasnaa Nour Zioueche",
+        "status": "present",
+        "participation": "yes",
+        "group": 5
+    }
+]

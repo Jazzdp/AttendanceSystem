@@ -1,0 +1,34 @@
+[
+    {
+        "student_id": "232331344619",
+        "lastName": "Zioueche",
+        "firstName": "Hasnaa Nour",
+        "name": "Hasnaa Nour Zioueche",
+        "group": "5",
+        "email": "hasnaaziouche20z@gmail.com"
+    },
+    {
+        "student_id": "39274257",
+        "lastName": "Zeggour",
+        "firstName": "Rayane Nazih",
+        "name": "Rayane Nazih Zeggour",
+        "group": "4",
+        "email": "zeggourrayane6@gmail.com"
+    },
+    {
+        "student_id": "3927424",
+        "lastName": "Zeghmar",
+        "firstName": "Douaa",
+        "name": "Douaa Zeghmar",
+        "group": "5",
+        "email": "zeghmardouaa@gmail.com"
+    },
+    {
+        "student_id": "392742",
+        "lastName": "zaza",
+        "firstName": "zozd",
+        "name": "zozd zaza",
+        "group": "2",
+        "email": "kjsdshd@feif.com"
+    }
+]
