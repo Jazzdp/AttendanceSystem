@@ -59,7 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .form-group { margin: 20px 0; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
         .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
-        button { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 4px; }
         .message { padding: 15px; margin: 20px 0; border-radius: 4px; }
         .message.success { background: #4CAF50; color: white; }
         .message.error { background: #f44336; color: white; }

@@ -287,7 +287,7 @@ $conn = null;
                 <div class="empty-state">
                     <h3>No Open Sessions</h3>
                     <p>Please create a session first before taking attendance.</p>
-                    <a href="create_session.php" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #4CAF50; color: white; text-decoration: none; border-radius: 4px;">Create Session</a>
+                    <a href="create_session.php" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #57096aff; color: white; text-decoration: none; border-radius: 4px;">Create Session</a>
                 </div>
             <?php endif; ?>
         <?php endif; ?>

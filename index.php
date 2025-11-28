@@ -9,11 +9,8 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <script src="func.js"></script>
-    <script>
-console.log('jQuery loaded:', typeof jQuery !== 'undefined');
-console.log('Chart.js loaded:', typeof Chart !== 'undefined');
-</script>
+    <script src="func.js" ></script>
+    
 </head>
 <body>
     <nav>
@@ -119,7 +116,38 @@ console.log('Chart.js loaded:', typeof Chart !== 'undefined');
             </div>
         </section>
     </div>
-  
+     <!-- Exo 2/ 3: Student Form -->
+      <div>
+        <section id="add-student" style="width: 85%; margin: 20px auto;">
+            <h2>Add New Student</h2>
+            <div id="confirmationMessage" class="confirmation"></div>
+            <form id="studentForm">
+                <div class="form-group">
+                    <label for="studentId">Student ID:</label>
+                    <input type="text" id="studentId" name="studentId" required>
+                    <span class="error-message" id="idError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                    <span class="error-message" id="lastError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                    <span class="error-message" id="firstError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </div>
+
+
        
 
 
